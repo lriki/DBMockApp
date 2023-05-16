@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="WpfSkeletonApp.Views.AnchorablePanes.ExplorerPane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfSkeletonApp.Views.AnchorablePanes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" BorderThickness="1" BorderBrush="LightGray" Background="LavenderBlush" VerticalAlignment="Top" Margin="2" >
+            <TextBlock Margin="4">
+                このウィンドウは全ての編集可能コンテンツの入り口です。<LineBreak />
+                上部のタブはマップ系、下部はデータベース系を想定しています。<LineBreak />
+                このサンプルでは [マップ] と [アクター] をダブルクリックすると<LineBreak />
+                編集ウィンドウを開きます。
+            </TextBlock>
+        </Border>
+
+        <TabControl Grid.Row="1" TabStripPlacement="Left">
+            <TabItem Header="マップ">
+                <TreeView>
+                    <TreeViewItem Header="📄0001: マップ1" MouseDoubleClick="TreeViewItem_MouseDoubleClick">
+                        <TreeViewItem Header="📄0002: マップ2" MouseDoubleClick="TreeViewItem_MouseDoubleClick">
+                        </TreeViewItem>
+                    </TreeViewItem>
+                    <TreeViewItem Header="📄0003: マップ3" MouseDoubleClick="TreeViewItem_MouseDoubleClick">
+                    </TreeViewItem>
+                </TreeView>
+            </TabItem>
+            <TabItem Header="動的イベント" />
+            <TabItem Header="タイルセット" />
+
+            <Separator />
+            <Separator />
+
+
+            <TabItem Header="アクター">
+                <ListBox>
+                    <ListBoxItem
+                        Content="0001: アクターA"
+                        MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                    <ListBoxItem
+                        Content="0001: アクターB"
+                        MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                    <ListBoxItem
+                        Content="0001: アクターC"
+                        MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                </ListBox>
+            </TabItem>
+
+            <TabItem Header="アイテム" />
+            <TabItem Header="スキル" />
+            <TabItem Header="システム" />
+        </TabControl>
+
+    </Grid>
+
+
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <TabControl Grid.Row="0" TabStripPlacement="Left">
+            <TabItem Header="マップ" Width="100">
+                <TreeView>
+                    <TreeViewItem Header="📄マップ1">
+                        <TreeViewItem Header="📄マップ2" MouseDoubleClick="TreeViewItem_MouseDoubleClick">
+                        </TreeViewItem>
+                    </TreeViewItem>
+                    <TreeViewItem Header="📄マップ3">
+                    </TreeViewItem>
+                </TreeView>
+            </TabItem>
+            <TabItem Header="動的イベント" />
+            <TabItem Header="タイルセット" />
+        </TabControl>
+
+        <TabControl Grid.Row="1"  TabStripPlacement="Left">
+            <TabItem Header="アクター" Width="100">
+                <ListBox>
+                    <ListBoxItem
+                        Content="Actor"
+                        MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                </ListBox>
+            </TabItem>
+            <TabItem Header="アイテム" />
+            <TabItem Header="スキル" />
+            <TabItem Header="システム" />
+        </TabControl>
+
+        <Border BorderThickness="1" BorderBrush="Gray">
+            <TextBlock Text="a" />
+        </Border>
+    </Grid>-->
+</UserControl>

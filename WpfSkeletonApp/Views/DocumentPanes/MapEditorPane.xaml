@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="WpfSkeletonApp.Views.DocumentPanes.MapEditorPane"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfSkeletonApp.Views.DocumentPanes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0" Grid.ColumnSpan="2" BorderThickness="1" BorderBrush="LightGray" Background="LavenderBlush" VerticalAlignment="Top"  Margin="2" >
+            <TextBlock Text="ツクールに似たマップエディタのウィンドウです。イベント一覧からイベントをダブルクリックすると、編集ウィンドウを開きます。" Margin="4" />
+        </Border>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Content="レイヤー切り替え" HorizontalAlignment="Left" />
+            <Button Content="イベント編集切り替え" HorizontalAlignment="Left" />
+            <Button Content="編集ツール" HorizontalAlignment="Left" />
+        </StackPanel>
+        
+        <Border Grid.Row="2" Grid.Column="0" Grid.RowSpan="1"
+                HorizontalAlignment="Stretch"
+                BorderThickness="1" BorderBrush="SteelBlue" Background="Lavender">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="タイルセットを表示します。" />
+                <Image Grid.Row="2" Source="/Resources/MapImage1.png" Stretch="Fill" />
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="3" Grid.Column="0" Grid.RowSpan="1"
+                HorizontalAlignment="Stretch"
+                BorderThickness="1" BorderBrush="SteelBlue" Background="Lavender">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="イベント一覧を表示します。" />
+                <ListBox Grid.Row="2">
+                    <ListBoxItem Content="0001: イベント1" MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                    <ListBoxItem Content="0002: イベント2" MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                    <ListBoxItem Content="0003: イベント3" MouseDoubleClick="ListBoxItem_MouseDoubleClick" />
+                </ListBox>
+            </Grid>
+        </Border>
+        
+        <Border Grid.Row="2" Grid.Column="1" Grid.RowSpan="2"
+                HorizontalAlignment="Stretch"
+                BorderThickness="1" BorderBrush="SteelBlue" Background="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="マップを表示します。" />
+                <Image Grid.Row="2" Source="/Resources/MapImage2.png" Stretch="Fill" />
+            </Grid>
+        </Border>
+        
+    </Grid>
+</UserControl>
