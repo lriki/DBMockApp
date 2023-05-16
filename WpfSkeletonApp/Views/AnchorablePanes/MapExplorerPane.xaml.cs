@@ -13,19 +13,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfSkeletonApp.Views
+namespace WpfSkeletonApp.Views.AnchorablePanes
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// MapExplorerPane.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MapExplorerPane : UserControl
     {
-        public static MainWindow Instance { get; set; }
-
-        public MainWindow()
+        public MapExplorerPane()
         {
             InitializeComponent();
-            Instance = this;
+        }
+
+        private void TreeViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var vm = (ViewModels.AnchorablePanes.MapExplorerPaneViewModel)DataContext;
+            vm.SubmitMapItem();
         }
     }
 }

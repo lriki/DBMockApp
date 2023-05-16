@@ -1,38 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WpfSkeletonApp.Views;
 
-namespace WpfSkeletonApp.ViewModels.DocumentPanes
+namespace WpfSkeletonApp.ViewModels.AnchorablePanes
 {
-    public class MapEditorPaneViewModel : DocumentPaneViewModelBase
+    public class MapExplorerPaneViewModel : AnchorablePaneViewModelBase
     {
         private readonly MapEditorWindowViewModel _window;
-        
+
         #region Title Property
         public override string Title
         {
-            get { return "MapEditor"; }
+            get { return "マップ"; }
         }
         #endregion
 
         #region ContentId Property
         public override string ContentId
         {
-            get { return GetHashCode().ToString(); }
+            get { return "MapExplorerPaneViewModel"; }
         }
         #endregion
 
-        public MapEditorPaneViewModel(MapEditorWindowViewModel window)
+        public MapExplorerPaneViewModel(MapEditorWindowViewModel window)
         {
             _window = window;
         }
-        
-        public void SubmitEvent()
+
+        public void SubmitMapItem()
         {
-            _window.OpenEventEditor();
+            _window.OpenMapEditor();
         }
     }
 }
