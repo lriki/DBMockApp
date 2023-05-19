@@ -2,7 +2,8 @@ import { useState } from "react";
 import "./App.css";
 import DockLayout, { LayoutData } from 'rc-dock'
 import "rc-dock/dist/rc-dock.css";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 
 let tab = {
   content: <div>Tab Content</div>,
@@ -48,6 +49,9 @@ const defaultLayout: LayoutData = {
                 <div>
                   <p>This tab has a minimal size</p>
                   150 x 150 px
+                  <Button variant="primary" size="sm" onClick={() => { 
+                    window.open("./MapEditorIndex.html", "", "width=1000,height=600");
+                   }}>ウィンドウを開く</Button>
                 </div>
               ), minWidth: 150, minHeight: 150,
             }, {...tab, id: 't4', title: 'Tab 4'}],

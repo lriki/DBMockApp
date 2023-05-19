@@ -66,4 +66,20 @@ const renderer: Configuration = {
   ],
 };
 
-export default [main, preload, renderer];
+const renderer_MapEditor: Configuration = {
+  ...common,
+  target: "web",
+  entry: {
+    app: "./src/web/MapEditorIndex.tsx",
+  },
+  plugins: [
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      inject: "body",
+      template: "./src/web/MapEditorIndex.html",
+      filename: "MapEditorIndex.html",
+    }),
+  ],
+};
+
+export default [main, preload, renderer, renderer_MapEditor];
