@@ -17,15 +17,21 @@
     ]
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@types/bootstrap": "^5.2.6",
     "@types/react-bootstrap": "^0.32.32",
+    "@types/styled-components": "^5.1.26",
     "bootstrap": "^5.2.3",
     "electron-tabs": "^1.0.1",
     "rc-dock": "^3.2.17",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
-    "react-split": "^2.0.14"
+    "react-split": "^2.0.14",
+    "styled-components": "^5.3.1-pr3564",
+    "url-loader": "^4.1.1"
   },
   "devDependencies": {
     "@types/node": "^18.16.3",

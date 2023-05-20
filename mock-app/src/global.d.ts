@@ -1,10 +1,14 @@
 import { IpcRendererEvent } from "electron";
+//export {};
 
 declare global {
     interface Window {
         DRB: Sandbox;
     }
+    //module '*.png';
 }
+    
+declare module "*.png";
 
 type IpcEventListener = (...args: any) => void;
 type IpcEventListenerRemover = () => void;

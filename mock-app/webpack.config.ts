@@ -29,6 +29,11 @@ const common: Configuration = {
         test: /\.(ico|png|svg|eot|woff?2?)$/,
         type: "asset/resource",
       },
+      
+      // {
+      //   test: /\.(jpg|png)$/,
+      //   loader: 'url-loader'
+      // }
     ],
   },
   watch: isDev,
@@ -70,7 +75,7 @@ const renderer_MapEditor: Configuration = {
   ...common,
   target: "web",
   entry: {
-    app: "./src/web/MapEditorIndex.tsx",
+    MapEditorIndex: "./src/web/MapEditorIndex.tsx",
   },
   plugins: [
     new MiniCssExtractPlugin(),

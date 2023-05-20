@@ -1,8 +1,27 @@
 import { Button } from 'react-bootstrap';
-import DockLayout, { LayoutData } from "rc-dock";
-import React from "react";
+import DockLayout, { LayoutData, TabGroup } from "rc-dock";
+import React, { CSSProperties } from "react";
+import styled from 'styled-components';
 import Split from "react-split";
+import img1 from "./assets/img1.png";
+
 const { DRB } = window;
+
+
+const styleNoteBox: CSSProperties = {
+    border: "1px solid #999999",
+    backgroundColor: "#ffddd2",
+    textAlign: "left",
+    borderRadius: 3,
+    margin: 2,
+
+}
+// const NoteBox = styled.div`
+//     color: red;
+//     boarder: 1px solid #999999;
+//     background-color: #ffcdd2;
+// `;
+
 
 export interface MainViewProps {
 
@@ -10,29 +29,75 @@ export interface MainViewProps {
 
 export interface MainViewStatus {
     count: number;
+    //rootWidth: number;
+    //rootHeight: number;
+    rootRect: DOMRect
 };
 
 export class MainView extends React.Component<MainViewProps, MainViewStatus> {
+    private _rootRef: React.RefObject<HTMLDivElement>;
+    private _resizeObserver: ResizeObserver | undefined;
+
     constructor(props: MainViewProps) {
         super(props);
         this.state = {
             count: 0,
+            rootRect: new DOMRect(10, 10, 100, 100),
         };
+        this._rootRef = React.createRef();
+        console.log("MainView constructor");
+    }
+
+    override componentDidMount(): void {
+        console.log("MainView componentDidMount");
+        this._resizeObserver = new ResizeObserver((entries) => {
+            entries.forEach((el) => {
+                const rect = el.target.getBoundingClientRect();
+                console.log("el.getBoundingClientRect", rect);
+
+                
+                this.setState({
+                    rootRect: rect,
+                });
+            });
+        });
+        this._resizeObserver.observe(this._rootRef.current!);
+
+        const aa = document.querySelector("#head");
+    }
+
+    override componentWillUnmount(): void {
+        console.log("MainView componentWillUnmount");
+        if (this._resizeObserver) {
+            this._resizeObserver.disconnect();
+            this._resizeObserver = undefined;
+        }
+    }
+
+    override componentDidUpdate(prevProps: any) {
+        console.log("MainView componentDidUpdate");
+        // if (this._rootRef.current) {
+        //     const rect = this._rootRef.current.getBoundingClientRect();
+        //     console.log("MainView componentDidUpdate", rect);
+        //     //DRB.setWindowRect(rect.left, rect.top, rect.width, rect.height);
+        // }
     }
 
     override render() {
+        console.log("MainView render", this.state.rootRect);
         return (
-            <div className="container">
+            <div ref={this._rootRef} className="container" style={{
+                background: "red",}}>
                 <h1>{this.state.count}</h1>
                 <DockLayout
                     defaultLayout={defaultLayout}
                     groups={groups}
                     style={{
                         position: "absolute",
-                        left: 10,
-                        top: 50,
-                        right: 10,
-                        bottom: 10,
+                        left: this.state.rootRect.left,
+                        top: this.state.rootRect.top,
+                        right: 10,//window.innerWidth - this.state.rootRect.right,
+                        bottom: 10,//window.innerHeight - this.state.rootRect.bottom,
                     }}
                 />
             </div>
@@ -46,11 +111,18 @@ let tab = {
     closable: true,
 };
 
-let groups = {
-    allowWindow: {
+let groups: any = {
+    "allowWindow": {
         floatable: false,
         newWindow: true,
         maximizable: false,
+    },
+    "centerLocked": {
+        floatable: "singleTab",
+        disableDock: true,
+        maximizable: false,
+        tabLocked: true,
+        animated: false,
     }
 };
 
@@ -89,27 +161,16 @@ const defaultLayout: LayoutData = {
                 children: [
                     {
                         tabs: [
-                            { ...tab, id: 't1', title: 'Tab 1' },
+                            { ...tab, id: 't1', title: 'Tab 1', content: <div  style={styleNoteBox}>テストプレイ中ゲームのパーティ情報とか</div> },
                             { ...tab, id: 't2', title: 'Tab 2' }
                         ],
                     },
                     {
                         tabs: [{
                             ...tab, id: 't3', title: 'Min Size', content: (
-                                <div>
-                                    <p>This tab has a minimal size</p>
-                                    150 x 150 px
+                                <div style={styleNoteBox}>
+                                    <p>ウィンドウの状態とか(メニューカスタマイズのデバッグ用)</p>
 
-                                    <Button variant="primary" size="sm" onClick={() => {
-                                        DRB.openSampleWindow().then((result) => {
-                                            //alert(result);
-                                        });
-                                        //window.open("./MapEditorIndex.html", "", "width=1000,height=600");
-                                        // ipcRenderer.invoke("callSample", "test")
-                                        // .then((result) => {
-                                        //   alert(result);
-                                        // });
-                                    }}>ウィンドウを開く</Button>
                                 </div>
                             ), minWidth: 150, minHeight: 150,
                         }, { ...tab, id: 't4', title: 'Tab 4' }],
@@ -122,34 +183,37 @@ const defaultLayout: LayoutData = {
                     {
                         ...tab, id: 't5', title: 'basic demo', content: (
                             <div>
-                                This panel won't be removed from layout even when last Tab is closed
+                                <div style={styleNoteBox}>テストプレイ中の画面です。</div>
+                                <img src={img1} alt="Image" width={640} height={480} />;
                             </div>
                         ),
+                        closable: false,
                     },
                 ],
+                group: "centerLocked",
                 panelLock: { panelStyle: 'main' },
             },
             {
                 size: 200,
-                tabs: [{ ...tab, id: 't8', title: 'Tab 8' }],
+                tabs: [{ ...tab, id: 't8', title: 'Tab 8', content: <div style={styleNoteBox}>テストプレイ中ゲームの変数リストとか</div> }],
             },
         ]
     },
     floatbox: {
         mode: 'float',
         children: [
-            {
-                tabs: [
-                    { ...tab, id: 't9', title: 'Tab 9', content: <div>Float</div> },
-                    { ...tab, id: 't10', title: 'Tab 10' }
-                ],
-                x: 300, y: 150, w: 400, h: 300
-            },
+            // {
+            //     tabs: [
+            //         { ...tab, id: 't9', title: 'Tab 9', content: <div>Float</div> },
+            //         { ...tab, id: 't10', title: 'Tab 10' }
+            //     ],
+            //     x: 300, y: 150, w: 400, h: 300
+            // },
 
-            {
-                tabs: [floatTab],
-                x: 60, y: 60, w: 320, h: 300
-            }
+            // {
+            //     tabs: [floatTab],
+            //     x: 60, y: 60, w: 320, h: 300
+            // }
         ]
     }
 };
