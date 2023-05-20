@@ -27,7 +27,7 @@ export const App = () => {
             
             <Split
                 style={{display : "flex"}}
-                sizes={[22, 75]}
+                sizes={[30, 70]}
                 minSize={100}
                 expandToMin={false}
                 gutterSize={10}

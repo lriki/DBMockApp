@@ -35,6 +35,7 @@ app.whenReady().then(() => {
 
     ipcMain.handle("openSampleWindow", (event) => {
         const subWindow = new BrowserWindow({
+            parent: mainWindow,
             webPreferences: {
                 preload: path.resolve(__dirname, "preload.js"),
             },
