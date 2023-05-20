@@ -7,4 +7,5 @@ type IpcEventListener = (...args: any[]) => void
 
 contextBridge.exposeInMainWorld("DRB", {
     callSample: async (param1: string): Promise<string> => await ipcRenderer.invoke("callSample", param1),
+    openSampleWindow: async (): Promise<void> => await ipcRenderer.invoke("openSampleWindow"),
 });
