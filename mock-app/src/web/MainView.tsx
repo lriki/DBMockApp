@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap';
 import DockLayout, { LayoutData } from "rc-dock";
 import React from "react";
+import Split from "react-split";
 const { DRB } = window;
 
 export interface MainViewProps {
@@ -58,7 +59,21 @@ let floatTab = {
     title: 'New Window',
     content: (
         <div>
-            <p>Right click on the max button ⇗</p>
+            <Split
+                style={{display : "flex"}}
+                sizes={[25, 75]}
+                minSize={100}
+                expandToMin={false}
+                gutterSize={10}
+                gutterAlign="center"
+                snapOffset={30}
+                dragInterval={1}
+                direction="horizontal"
+                cursor="col-resize"
+            >
+                <p style={{ backgroundColor: '#c1f2de' }}>Right click on the max button111 ⇗</p>
+                <p style={{ backgroundColor: '#f8d9f8' }}>Right click on the max button222 ⇗</p>
+            </Split>
         </div>
     ),
     group: 'allowWindow'

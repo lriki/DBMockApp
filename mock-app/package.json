@@ -24,7 +24,8 @@
     "rc-dock": "^3.2.17",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-split": "^2.0.14"
   },
   "devDependencies": {
     "@types/node": "^18.16.3",
