@@ -1,10 +1,12 @@
 import path from "node:path";
-import { BrowserWindow, app } from "electron";
+import { BrowserWindow, app, ipcMain  } from "electron";
 
 app.whenReady().then(() => {
   const mainWindow = new BrowserWindow({
     webPreferences: {
       preload: path.resolve(__dirname, "preload.js"),
+      //webviewTag: true,
+      nodeIntegration: true,
     },
   });
 
@@ -17,6 +19,16 @@ app.whenReady().then(() => {
     return { action: 'allow', overrideBrowserWindowOptions: {
       parent: mainWindow,
     } };
+  });
+
+  mainWindow.on('move', function() {
+    console.log("move");
+    // Do move event action
+  });
+
+  ipcMain.handle("callSample", (event, data) => {
+    console.log("callSample");
+    return(`${data}にゃん`);
   })
 });
 

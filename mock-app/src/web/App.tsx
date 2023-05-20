@@ -4,6 +4,7 @@ import DockLayout, { LayoutData } from 'rc-dock'
 import "rc-dock/dist/rc-dock.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button } from 'react-bootstrap';
+const { DRB } = window;
 
 let tab = {
   content: <div>Tab Content</div>,
@@ -49,8 +50,16 @@ const defaultLayout: LayoutData = {
                 <div>
                   <p>This tab has a minimal size</p>
                   150 x 150 px
+                  
                   <Button variant="primary" size="sm" onClick={() => { 
-                    window.open("./MapEditorIndex.html", "", "width=1000,height=600");
+                    DRB.callSample("test").then((result) => {
+                      alert(result);
+                    });
+                    //window.open("./MapEditorIndex.html", "", "width=1000,height=600");
+                    // ipcRenderer.invoke("callSample", "test")
+                    // .then((result) => {
+                    //   alert(result);
+                    // });
                    }}>ウィンドウを開く</Button>
                 </div>
               ), minWidth: 150, minHeight: 150,
@@ -117,3 +126,4 @@ export const App = () => {
     </div>
   );
 };
+
