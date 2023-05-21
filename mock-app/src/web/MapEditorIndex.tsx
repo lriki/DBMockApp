@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import img1 from "./assets/img2.png";
 
 import { App } from "./App";
+import { DockTabManager, TabItem } from "./DockTabManager";
 
 const styleNoteBox: CSSProperties = {
     border: "1px solid #999999",
@@ -13,9 +14,19 @@ const styleNoteBox: CSSProperties = {
 
 }
 
+
+const tabItems: TabItem[] = [
+    {
+        title: "MapEditor",
+        content: <div>
+            <div style={styleNoteBox}>マップエディタです。</div>
+            <img src={img1} alt="Image" width={800} height={600} />;
+            </div>,
+    },
+];
+
 createRoot(document.getElementById("root") as Element).render(
     <StrictMode>
-        <div style={styleNoteBox}>マップエディタです。</div>
-        <img src={img1} alt="Image" width={800} height={600} />;
+        <DockTabManager items={tabItems} />
     </StrictMode>
 );

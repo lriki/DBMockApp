@@ -15,5 +15,5 @@ type IpcEventListenerRemover = () => void;
 
 export interface Sandbox {
     callSample: (param1: string) => Promise<string>;
-    openSampleWindow: () => Promise<void>;
+    openSampleWindow: (type?: string | undefined, screenX?: number | undefined, screenY?: number | undefined) => Promise<void>;
 }

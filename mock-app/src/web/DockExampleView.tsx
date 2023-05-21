@@ -8,11 +8,11 @@ export interface DockExampleViewProps {
 
 };
 
-export interface DockExampleViewStatus {
+export interface DockExampleViewState {
     count: number;
 };
 
-export class DockExampleView extends React.Component<DockExampleViewProps, DockExampleViewStatus> {
+export class DockExampleView extends React.Component<DockExampleViewProps, DockExampleViewState> {
     constructor(props: DockExampleViewProps) {
         super(props);
         this.state = {

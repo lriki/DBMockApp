@@ -123,12 +123,12 @@ export interface EntranceMenuViewProps {
 
 };
 
-export interface EntranceMenuViewStatus {
+export interface EntranceMenuViewState {
     count: number;
     currentMenu: MenuItem;
 };
 
-export class EntranceMenuView extends React.Component<EntranceMenuViewProps, EntranceMenuViewStatus> {
+export class EntranceMenuView extends React.Component<EntranceMenuViewProps, EntranceMenuViewState> {
 
 
 

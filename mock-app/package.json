@@ -30,6 +30,8 @@
     "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-split": "^2.0.14",
+    "react-tabs": "^6.0.1",
+    "save": "^2.9.0",
     "styled-components": "^5.3.1-pr3564",
     "url-loader": "^4.1.1"
   },

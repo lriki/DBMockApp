@@ -27,14 +27,14 @@ export interface MainViewProps {
 
 };
 
-export interface MainViewStatus {
+export interface MainViewState {
     count: number;
     //rootWidth: number;
     //rootHeight: number;
     rootRect: DOMRect
 };
 
-export class MainView extends React.Component<MainViewProps, MainViewStatus> {
+export class MainView extends React.Component<MainViewProps, MainViewState> {
     private _rootRef: React.RefObject<HTMLDivElement>;
     private _resizeObserver: ResizeObserver | undefined;
 
@@ -45,15 +45,12 @@ export class MainView extends React.Component<MainViewProps, MainViewStatus> {
             rootRect: new DOMRect(10, 10, 100, 100),
         };
         this._rootRef = React.createRef();
-        console.log("MainView constructor");
     }
 
     override componentDidMount(): void {
-        console.log("MainView componentDidMount");
         this._resizeObserver = new ResizeObserver((entries) => {
             entries.forEach((el) => {
                 const rect = el.target.getBoundingClientRect();
-                console.log("el.getBoundingClientRect", rect);
 
                 
                 this.setState({
@@ -67,7 +64,6 @@ export class MainView extends React.Component<MainViewProps, MainViewStatus> {
     }
 
     override componentWillUnmount(): void {
-        console.log("MainView componentWillUnmount");
         if (this._resizeObserver) {
             this._resizeObserver.disconnect();
             this._resizeObserver = undefined;
@@ -75,7 +71,6 @@ export class MainView extends React.Component<MainViewProps, MainViewStatus> {
     }
 
     override componentDidUpdate(prevProps: any) {
-        console.log("MainView componentDidUpdate");
         // if (this._rootRef.current) {
         //     const rect = this._rootRef.current.getBoundingClientRect();
         //     console.log("MainView componentDidUpdate", rect);
@@ -84,11 +79,9 @@ export class MainView extends React.Component<MainViewProps, MainViewStatus> {
     }
 
     override render() {
-        console.log("MainView render", this.state.rootRect);
         return (
             <div ref={this._rootRef} className="container" style={{
-                background: "red",}}>
-                <h1>{this.state.count}</h1>
+                }}>
                 <DockLayout
                     defaultLayout={defaultLayout}
                     groups={groups}

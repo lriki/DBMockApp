@@ -28,14 +28,17 @@ app.whenReady().then(() => {
     //     // Do move event action
     // });
 
+
     ipcMain.handle("callSample", (event, data) => {
         console.log("callSample");
         return (`${data}にゃん`);
     });
 
-    ipcMain.handle("openSampleWindow", (event) => {
+    ipcMain.handle("openSampleWindow", (event, type?: string | undefined, screenX?: number | undefined, screenY?: number | undefined) => {
         const subWindow = new BrowserWindow({
             parent: mainWindow,
+            x: screenX,
+            y: screenY,
             webPreferences: {
                 preload: path.resolve(__dirname, "preload.js"),
             },
